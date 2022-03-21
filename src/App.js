@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import ToDoDisplay from './components/ToDoDisplay';
+import ToDoForm from './components/ToDoForm';
 
 function App() {
+  const [items, setItems] = useState([])
+
+  const recieveNewItem = (newItem) => {
+    setItems([...items, newItem])
+  }
+
+  const updateItems = (items) => {
+    setItems(items)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo list</h1>
+      <ToDoForm onNewItem = {recieveNewItem}/>
+      <ToDoDisplay items={items} updateItems={updateItems}/>
     </div>
   );
 }
